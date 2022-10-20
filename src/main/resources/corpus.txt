@@ -1,10 +1,15 @@
 farmacia,1
+farmaceuta,1
+farmacêutico,1
+farmacêuticos,1
+fármaco,1
 padaria,1
 pix,1
 paz,1
 computador,1
 joia,1
 estacionamento,1
+estacionamentos,1
 emprestimo,1
 renda,1
 seguro,1
