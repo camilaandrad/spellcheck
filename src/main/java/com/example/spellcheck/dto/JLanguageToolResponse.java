@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 public class JLanguageToolResponse {
 
-    private List<String> suggestions;
-    private String errorMessage;
+    private List<List<String>> suggestions;
+    private List<String> errorMessage;
 
 }

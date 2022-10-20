@@ -7,6 +7,7 @@ import org.languagetool.rules.RuleMatch;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.languagetool.JLanguageTool.ParagraphHandling.NORMAL;
@@ -22,10 +23,15 @@ public class JLanguageToolService {
         if (results.isEmpty()) {
             return JLanguageToolResponse.builder().build();
         }
-        final RuleMatch firstRule = results.get(0);
+        final List<String> errorsMessage = new ArrayList<>();
+        final List<List<String>> suggestions = new ArrayList<>();
+        for (final RuleMatch match : results) {
+           errorsMessage.add(match.getShortMessage().isEmpty() ? match.getMessage() : match.getShortMessage());
+           suggestions.add(match.getSuggestedReplacements());
+        }
         return JLanguageToolResponse.builder()
-                .suggestions(firstRule.getSuggestedReplacements())
-                .errorMessage(firstRule.getShortMessage().isEmpty() ? firstRule.getMessage() : firstRule.getShortMessage())
+                .suggestions(suggestions)
+                .errorMessage(errorsMessage)
                 .build();
     }
 
